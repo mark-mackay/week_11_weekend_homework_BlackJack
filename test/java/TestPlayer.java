@@ -9,7 +9,7 @@ public class TestPlayer {
     Deck deck;
     Player player1;
     ArrayList<Card> cards;
-    Card aceClubs, fourHearts, fiveSpades;
+    Card aceClubs, fourHearts, fiveSpades, tenHearts, aceSpades;
 
 
     @Before
@@ -18,8 +18,10 @@ public class TestPlayer {
         player1 = new Player("Mark");
         cards = new ArrayList<>();
         aceClubs = new Card(SuitType.CLUBS, RankType.ACE);
+        aceSpades = new Card(SuitType.SPADES, RankType.ACE);
         fiveSpades = new Card(SuitType.SPADES, RankType.FIVE);
         fourHearts = new Card(SuitType.HEARTS, RankType.FOUR);
+        tenHearts = new Card(SuitType.HEARTS, RankType.TEN);
     }
 
     @Test
@@ -63,6 +65,27 @@ public class TestPlayer {
         assertEquals(2, player1.viewCards().size());
         boolean hasAce = player1.playerHasAce();
         assertEquals(false, hasAce);
+    }
+    @Test
+    public void testGetScore(){
+        player1.getCard(fourHearts);
+        player1.getCard(tenHearts);
+        int value = player1.getScore();
+        assertEquals(14, value);
+    }
+    @Test
+    public void testGetScoreWithAces(){
+        player1.getCard(aceSpades);
+        player1.getCard(aceClubs);
+        int value = player1.getScore();
+        assertEquals(12, value);
+    }
+    @Test
+    public void testGetScoreWithBlackJack(){
+        player1.getCard(aceSpades);
+        player1.getCard(tenHearts);
+        int value = player1.getScore();
+        assertEquals(21, value);
     }
 }
 

@@ -14,14 +14,16 @@ public class Game {
         this.players.add(player);
     }
 
-//    public Player playGame(){
-//        this.deck.populateDeck();
-//        this.deck.shuffleDeck();
+    public Player playGame(){
+        this.deck.populateDeck();
+        this.deck.shuffleDeck();
+        this.initialDeal();
 ////        for (Player player : this.players){
 ////            player.getCard(deck.dealCard());
 ////        }
 ////        return this.getWinner();
-//    }
+        return getWinner();
+    }
     public void initialDeal(){
         for (int n = 1; n <= 2; n++) {
             for (Player player : this.players) {
@@ -31,6 +33,16 @@ public class Game {
     }
     public int viewPlayers(){
         return this.players.size();
+    }
+
+    public Player getWinner(){
+        Player winner = this.players.get(0);
+        for (Player player : this.players) {
+            if (player.getScore() > winner.getScore()) {
+                winner = player;
+            }
+        }
+        return winner;
     }
 
 //    public Player getWinner(){

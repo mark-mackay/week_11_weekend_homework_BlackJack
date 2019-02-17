@@ -32,12 +32,14 @@ public class TestGame {
 //        System.out.println(card.getRank().toString() + " " + card.getSuit().toString());
 //    }
 //
-//    @Test
-//    public void testGame(){
-//        game.addPlayer(player1);
-//        game.addPlayer(player2);
-//        Player result = game.playGame();
-//        Card card = result.viewCard();
+    @Test
+    public void testGame(){
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        Player winner = game.playGame();
+        System.out.println("Player 1: " + player1.getScore());
+        System.out.println("Player 2: " + player2.getScore());
+        System.out.println("Winner: " + winner.getScore());
 //        System.out.println(card.getRank().toString() + " " + card.getSuit().toString());
-//    }
+    }
 }

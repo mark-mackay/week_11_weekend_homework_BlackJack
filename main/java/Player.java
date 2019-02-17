@@ -34,5 +34,15 @@ public class Player {
         }
         return false;
     }
+    public int getScore(){
+        int score = 0;
+        for (Card card : this.cards) {
+            score += card.getValueFromEnum();
+            }
+        if (this.playerHasAce() && score <= 11){
+            score += 10;
+        }
+        return score;
+    }
 
 }
