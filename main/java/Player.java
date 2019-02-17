@@ -5,12 +5,14 @@ public class Player {
     private Card card;
     private ArrayList<Card> cards;
     private boolean hasAce;
+    private boolean sticking;
 
 
     public Player(String name){
         this.name = name;
         this.cards = new ArrayList<>();
         this.hasAce = false;
+        this.sticking = false;
     }
     public void getCard(Card card){
         this.cards.add(card);
@@ -48,9 +50,35 @@ public class Player {
     public boolean hasAce(){
         return this.hasAce;
     }
+    public void toggleHasAce(){
+        this.hasAce = true;
+    }
 
     public void twist(){
         int value = this.getScore();
     }
-
+    public String getName(){
+        return this.name;
+    }
+    public boolean isPlayerSticking(){
+        return this.sticking;
+    }
+    public void playerSticks() {
+        this.sticking = true;
+    }
+    public Card showDealerCard(){
+        return this.cards.get(1);
+    }
+    public String showCards() {
+        String cardOutput = "";
+        for (Card card : this.cards) {
+             cardOutput += "The " + card.getRank() + " of " + card.getSuit() + "\n";
+        }
+        return cardOutput;
+    }
+    public void showPlayerGame(){
+        System.out.println("Player: " + this.getName());
+        System.out.println("Your current score is: " + this.getScore());
+        System.out.println("Your cards are: \n" + this.showCards());
+    }
 }
