@@ -4,11 +4,13 @@ public class Player {
     private String name;
     private Card card;
     private ArrayList<Card> cards;
+    private boolean hasAce;
 
 
     public Player(String name){
         this.name = name;
         this.cards = new ArrayList<>();
+        this.hasAce = false;
     }
     public void getCard(Card card){
         this.cards.add(card);
@@ -26,23 +28,29 @@ public class Player {
 //    public void twist(){
 //
 //    }
-    public boolean playerHasAce(){
+    public void checkIfPlayerHasAce(){
         for (Card card : this.cards) {
-            if (card.getValueFromEnum() == 1){
-                return true;
+            if (card.getValueFromEnum() == 1) {
+                this.hasAce = true;
             }
         }
-        return false;
     }
     public int getScore(){
         int score = 0;
         for (Card card : this.cards) {
             score += card.getValueFromEnum();
             }
-        if (this.playerHasAce() && score <= 11){
+        if (this.hasAce && score <= 11){
             score += 10;
         }
         return score;
+    }
+    public boolean hasAce(){
+        return this.hasAce;
+    }
+
+    public void twist(){
+        int value = this.getScore();
     }
 
 }

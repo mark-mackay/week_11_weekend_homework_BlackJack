@@ -55,7 +55,8 @@ public class TestPlayer {
         player1.getCard(aceClubs);
         player1.getCard(fourHearts);
         assertEquals(2, player1.viewCards().size());
-        boolean hasAce = player1.playerHasAce();
+        player1.checkIfPlayerHasAce();
+        boolean hasAce = player1.hasAce();
         assertEquals(true, hasAce);
     }
     @Test
@@ -63,7 +64,8 @@ public class TestPlayer {
         player1.getCard(fiveSpades);
         player1.getCard(fourHearts);
         assertEquals(2, player1.viewCards().size());
-        boolean hasAce = player1.playerHasAce();
+        player1.checkIfPlayerHasAce();
+        boolean hasAce = player1.hasAce();
         assertEquals(false, hasAce);
     }
     @Test
@@ -77,6 +79,7 @@ public class TestPlayer {
     public void testGetScoreWithAces(){
         player1.getCard(aceSpades);
         player1.getCard(aceClubs);
+        player1.checkIfPlayerHasAce();
         int value = player1.getScore();
         assertEquals(12, value);
     }
@@ -84,6 +87,7 @@ public class TestPlayer {
     public void testGetScoreWithBlackJack(){
         player1.getCard(aceSpades);
         player1.getCard(tenHearts);
+        player1.checkIfPlayerHasAce();
         int value = player1.getScore();
         assertEquals(21, value);
     }

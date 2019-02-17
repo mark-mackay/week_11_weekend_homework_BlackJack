@@ -22,6 +22,7 @@ public class Game {
 ////            player.getCard(deck.dealCard());
 ////        }
 ////        return this.getWinner();
+        this.checkPlayersForAces();
         return getWinner();
     }
     public void initialDeal(){
@@ -38,11 +39,17 @@ public class Game {
     public Player getWinner(){
         Player winner = this.players.get(0);
         for (Player player : this.players) {
+
             if (player.getScore() > winner.getScore()) {
                 winner = player;
             }
         }
         return winner;
+    }
+    public void checkPlayersForAces(){
+        for (Player player : this.players) {
+            player.checkIfPlayerHasAce();
+        }
     }
 
 //    public Player getWinner(){
